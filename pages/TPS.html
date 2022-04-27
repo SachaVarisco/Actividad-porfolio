@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP Js</title>
+</head>
+<body>
+    <h5>Ejercicio 1</h5>
+    <label for="EJ1_N1">Numero 1:</label>
+    <input type="number" id="EJ1_N1">
+    <label for="EJ1_N2">Numero 2:</label>
+    <input type="number" id="EJ1_N2">
+    <label for="EJ1_N3">Numero 3:</label>
+    <input type="number" id="EJ1_N3">
+
+    <button onclick="func_EJ1()">Comparar</button>
+    <label for="EJ1_R1">Resultado:</label>
+    <input type="text" id="EJ1_R1">
+
+    <h5>Ejercicio 2</h5>
+    <label for="EJ2_N1">Numero 1:</label>
+    <input type="number" id="EJ2_N1">
+    <label for="EJ2_N2">Numero 2:</label>
+    <input type="number" id="EJ2_N2">
+    <button onclick="func_EJ2()">Sumar</button>
+    <label for="EJ2_R2">Resultado</label>
+    <input type="number" id="EJ2_R2">
+
+    <h5>Ejercio 3</h5>
+    <label for="EJ3_T1">Numero 1:</label>
+    <input type="text" id="EJ3_T1">
+    <label for="EJ3_N1">Numero 2:</label>
+    <input type="number" id="EJ3_N1">
+    <button onclick="func_EJ3()">Repetir</button>
+    <label for="EJ3_R1">Resultado</label>
+    <input type="text" id="EJ3_R1">
+
+
+    <script>
+        
+
+        function func_EJ1() {
+           // alert ("Me ejecuto dentro de una función")
+           let EJ1_N1 = parseFloat (document.getElementById('EJ1_N1').value);
+           let EJ1_N2 = parseFloat (document.getElementById('EJ1_N2').value);
+           let EJ1_N3 = parseFloat (document.getElementById('EJ1_N3').value);
+
+           //const suma =  EJ1_N1 + EJ1_N2 + EJ1_N3
+           
+
+           if (EJ1_N1>EJ1_N2 && EJ1_N1>EJ1_N3) {
+               var suma = EJ1_N1
+           } else {
+            if (EJ1_N2>EJ1_N1 && EJ1_N2>EJ1_N3) {
+                var suma = EJ1_N2
+            }else { var suma = EJ1_N3
+
+            }
+            
+           }
+           document.getElementById("EJ1_R1").value = suma
+        }
+        function func_EJ2() {
+            let EJ2_N1 = parseFloat (document.getElementById('EJ2_N1').value);
+           let EJ2_N2 = parseFloat (document.getElementById('EJ2_N2').value);
+            const suma =  EJ2_N1 + EJ2_N2
+            document.getElementById("EJ2_R2").value = suma
+        }
+       
+        function func_EJ3() {
+            let EJ3_T1 = (document.getElementById('EJ3_T1').value);
+           let EJ3_N1 = parseFloat (document.getElementById('EJ3_N1').value);
+           let frase = ""
+           for (let index = 0; index < EJ3_N1; index++) {
+                frase = frase + EJ3_T1
+                
+            }
+            document.getElementById("EJ3_R1").value = frase
+        }
+           
+           
+    </script>
+</body>
+</html>
