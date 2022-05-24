@@ -37,6 +37,37 @@
     <label for="EJ3_R1">Resultado</label>
     <input type="text" id="EJ3_R1">
 
+    <h5>Ejercio 4</h5>
+    <label for="EJ4_N1">Celsius</label>
+    <input type="number" id="EJ4_N1">
+    <button onclick="func_EJ4()">Convertir</button>
+    <label for="EJ4_N2">Farenheit</label>
+    <input type="number" id="EJ4_N2">
+
+    <h5>Ejercio 5</h5>
+    <label for="EJ5_T1">Ingrese una palabra</label>
+    <input type="text" id="EJ5_T1">
+    <button onclick="func_EJ5()">Contar</button>
+    <label for="EJ5_R1">Resultado</label>
+    <input type="text" id="EJ5_R1">
+
+    <h5>Ejercio 6</h5>
+    <label for="EJ6_N1">Ingrese Numero</label>
+    <input type="number" id="EJ6_N1">
+    <button onclick="func_EJ6()">¿Es par?</button>
+    <label for="EJ6_R1">Resultado</label>
+    <input type="text" id="EJ6_R1">
+    
+    <h5>Ejercio 7</h5>
+    <label for="EJ7_N1">Ingrese Numero</label>
+    <input type="text" id="EJ7_N1">
+    <label for="EJ7_N2">Ingrese Numero</label>
+    <input type="text" id="EJ7_N2">
+    <button onclick="func_EJ7()">Descubrir numeros</button>
+    <label for="EJ7_R1">Resultado</label>
+    <input type="text" id="EJ7_R1">
+
+    
 
     <script>
         
@@ -79,7 +110,57 @@
             }
             document.getElementById("EJ3_R1").value = frase
         }
-           
+        function func_EJ4 () {
+            let EJ4_N1 = parseFloat (document.getElementById('EJ4_N1').value);
+           let EJ4_N2 = parseFloat (document.getElementById('EJ4_N2').value);
+           if (EJ4_N2 = "" &&  EJ4_N1 != 0) {
+               const Farenheit = (EJ4_N1 * (9/5)) + 32
+               document.getElementById("EJ4_N2").value = Farenheit
+           }else{
+            const Celsius = (EJ4_N2 - 32) + (5/9)
+                document.getElementById("EJ4_N1").value = Celsius
+
+           }
+        }
+        function func_EJ5 () {
+            let EJ5_N1 = (document.getElementById('EJ5_N1').value);
+
+            
+        }
+        function func_EJ6() {
+            let EJ6_N1 = (document.getElementById('EJ6_N1').value);
+            if (EJ6_N1%2==0) {
+                const par = "SI LO ES"
+                document.getElementById("EJ6_R1").value = par
+            } else {
+                const par = "NO LO ES"
+                document.getElementById("EJ6_R1").value = par
+            }
+        }
+        function func_EJ7() {
+            let num1= parseFloat(document.getElementById('EJ7_N1').value);
+            let num2= parseFloat(document.getElementById('EJ7_N2').value);
+
+            let multiplos = ""
+            let comparten = true
+            let mult = 3
+         var mod1, mod2
+
+            while (mult <= num1 && mult <= num2) {
+
+             mod1 = num1 % mult
+             mod2 = num2 % mult
+                if (mod1 === mod2){
+                 multiplos = multiplos + mult + ", "
+                  mult = mult + 3
+
+                } else {
+                 comparten = false 
+                } 
+            }
+         document.getElementById("EJ7_R1").value= multiplos
+         
+        }
            
     </script>
 </body>
