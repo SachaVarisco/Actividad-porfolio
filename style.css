@@ -18,6 +18,12 @@ body{
 h3{color: white;}
 ul{color: white;}
 
-.card-phaser {
-  float: left;
+section {
+  background-color: orange;
+display: flex;
+flex-direction: row;
 }
+.btn btn-primary{
+  color: black;
+}
+
