@@ -105,16 +105,16 @@ function create ()
     stars = this.physics.add.group({
         key: 'star',
         repeat: 5,
-        setXY: { x: 12, y: 0, stepX: 70 }
+        setXY: { x: 5, y: 0, stepX: 70 }
     });
+
 
     redstars = this.physics.add.group({
         key: 'star',
         repeat: 6,
-        setXY: { x: 100, y: 0, stepX:70 }
-        
+        setXY: { x: 6, y: 0, stepX:70 } 
     });
-
+   
 
     stars.children.iterate(function (child) {
 
@@ -171,7 +171,7 @@ function update ()
     {
         player.setVelocityY(-330);
     }
-   
+} 
 function collectStar (player, star)
 {
     star.disableBody(true, true);
@@ -218,13 +218,6 @@ function collecredtStar (player, redstar)
 
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
-        var bomb = bombs.create(x, 16, 'bomb');
-        bomb.setBounce(1);
-        bomb.setCollideWorldBounds(true);
-        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-        bomb.allowGravity = false;
-    
-
     }
    
 }
@@ -239,6 +232,9 @@ function hitBomb (player, bomb)
 
     gameOver = true;
   
+}
+function Death(player) {
+    
 }
 
 </script>
