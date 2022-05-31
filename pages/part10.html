@@ -45,11 +45,12 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.image('sky', '../assets/Assets/sky.png');
-    this.load.image('ground', '../assets/Assets/platform.png');
-    this.load.image('star', '../assets/Assets/star.png');
-    this.load.image('bomb', '../assets/Assets/bomb.png');
-    this.load.spritesheet('dude', '../assets/Assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+    this.load.image('sky', '../assets/Assets/fondo2.jpg');
+    this.load.image('ground', '../assets/Assets/platform2.png');
+    this.load.image('star', '../assets/Assets/greenapple.png');
+    this.load.image('redstar', '../assets/Assets/redapple.png');
+    this.load.image('bomb', '../assets/Assets/bomb2.png');
+    this.load.spritesheet('dude', '../assets/Assets/dude2.png', { frameWidth: 32, frameHeight: 48 });
 }
 
 function create ()
@@ -111,7 +112,7 @@ function create ()
 
 
     redstars = this.physics.add.group({
-        key: 'star',
+        key: 'redstar',
         repeat: 5,
         setXY: { x: 15, y: 250, stepX:150 } 
     });
@@ -123,18 +124,11 @@ function create ()
         child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
 
     });
-        redstars.children.iterate(function (child) {
-
-        //  Give each star a slightly different bounce
-        child.setTint(0xff0000);
-
-        });
-
-
+        
     bombs = this.physics.add.group();
 
     //  The score
-    scoreText = this.add.text(200, 16, 'SCORE: 0', {fontSize: '50px', fill: '#A0522D'});
+    scoreText = this.add.text(50, 16, 'SCORE: 0', {fontSize: '50px', fill: '#FFFFFF'});
 
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, platforms);
@@ -183,13 +177,14 @@ function update ()
         player.setVelocityY(-330);
     }
 } 
-function collectStar (player, star)
+function collectStar (player, star, redstar)
 {
     star.disableBody(true, true);
 
     //  Add and update the score
     score += 10;
     scoreText.setText('Score: ' + score);
+
 
     if (stars.countActive(true) === 0)
     {
@@ -199,6 +194,26 @@ function collectStar (player, star)
             child.enableBody(true, child.x, 0, true, true);
 
         });
+        redstar.disableBody(true, true);
+    
+    //  Add and update the score
+    score += 15;
+    scoreText.setText('Score: ' + score);
+
+    if (redstars.countActive(true) === 0)
+    {
+        //  A new batch of stars to collect
+        redstars.children.iterate(function (child) {
+
+            child.enableBody(true, child.x, 250, true, true);
+
+        });
+
+        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+        
+        
+    }
+   
 
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
@@ -210,28 +225,7 @@ function collectStar (player, star)
 
     }
 }
-function collecredtStar (player, redstar)
-{
-    redstar.disableBody(true, true);
-    
-    //  Add and update the score
-    score += 15;
-    scoreText.setText('Score: ' + score);
 
-    if (redstars.countActive(true) === 0)
-    {
-        //  A new batch of stars to collect
-        redstars.children.iterate(function (child) {
-
-            child.enableBody(true, child.x, 0, true, true);
-
-        });
-
-        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-
-    }
-   
-}
 
 function hitBomb (player, bomb)
 {
