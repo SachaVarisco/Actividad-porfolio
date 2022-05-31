@@ -177,7 +177,7 @@ function update ()
         player.setVelocityY(-330);
     }
 } 
-function collectStar (player, star, redstar)
+function collectStar (player, star)
 {
     star.disableBody(true, true);
 
@@ -194,27 +194,10 @@ function collectStar (player, star, redstar)
             child.enableBody(true, child.x, 0, true, true);
 
         });
-        redstar.disableBody(true, true);
+       
     
     //  Add and update the score
-    score += 15;
-    scoreText.setText('Score: ' + score);
-
-    if (redstars.countActive(true) === 0)
-    {
-        //  A new batch of stars to collect
-        redstars.children.iterate(function (child) {
-
-            child.enableBody(true, child.x, 250, true, true);
-
-        });
-
-        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-        
-        
-    }
    
-
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
         var bomb = bombs.create(x, 16, 'bomb');
@@ -225,6 +208,29 @@ function collectStar (player, star, redstar)
 
     }
 }
+function collectredStar (player, redstar){
+    redstar.disableBody(true, true);
+    score += 15;
+        scoreText.setText('Score: ' + score);
+
+        if (redstars.countActive(true) === 0)
+        {
+            //  A new batch of stars to collect
+            redstars.children.iterate(function (child) {
+
+                child.enableBody(true, child.x, 250, true, true);
+
+            });
+
+            var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+            var bomb = bombs.create(x, 16, 'bomb');
+            bomb.setBounce(1);
+            bomb.setCollideWorldBounds(true);
+            bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+            bomb.allowGravity = false;
+            
+        }
+}  
 
 
 function hitBomb (player, bomb)
